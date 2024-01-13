@@ -18,7 +18,7 @@ services:
       # ACME DNS challenge:
       TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_TLSCHALLENGE: "false"
       TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_DNSCHALLENGE: "true"
-      TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_CASERVER: "https://acme-staging-v02.api.letsencrypt.org/directory"
+      # TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_CASERVER: "https://acme-staging-v02.api.letsencrypt.org/directory"
 
     env_file:
       - .env
@@ -28,6 +28,7 @@ services:
 
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./acme.json:/acme.json"
 
     labels:
       # Traefik dashboard:
