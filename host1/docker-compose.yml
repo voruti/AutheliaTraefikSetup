@@ -62,4 +62,5 @@ services:
   service:
     image: traefik/whoami
     labels:
-      traefik.http.routers.whoami.rule: Host(`service-host1.${DOMAIN:?error}`)
+      traefik.http.routers.service.rule: Host(`service-host1.${DOMAIN:?error}`)
+      traefik.http.routers.service.middlewares: "authelia@docker"
