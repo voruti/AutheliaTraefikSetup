@@ -1,0 +1,46 @@
+version: '3'
+services:
+
+  traefik:
+    image: traefik
+
+    environment:
+      TRAEFIK_API: "true"
+
+      TRAEFIK_PROVIDERS_DOCKER: "true"
+      TRAEFIK_PROVIDERS_DOCKER_NETWORK: "host1_default"
+
+      TRAEFIK_ENTRYPOINTS_WEBSECURE_ADDRESS: ":443"
+      TRAEFIK_ENTRYPOINTS_WEBSECURE_HTTP_TLS: "true"
+      TRAEFIK_ENTRYPOINTS_WEBSECURE_FORWARDEDHEADERS_TRUSTEDIPS: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+      TRAEFIK_ENTRYPOINTS_WEBSECURE_PROXYPROTOCOL_TRUSTEDIPS: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+
+      # ACME DNS challenge:
+      TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_TLSCHALLENGE: "false"
+      TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_DNSCHALLENGE: "true"
+      TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_CASERVER: "https://acme-staging-v02.api.letsencrypt.org/directory"
+
+    env_file:
+      - .env
+
+    ports:
+      - "443:443"
+
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+    labels:
+      # Traefik dashboard:
+      traefik.http.routers.traefik.rule: "Host(`traefik-host1.${DOMAIN:?error}`)"
+      traefik.http.routers.traefik.service: "api@internal"
+
+      # Lets Encrypt:
+      traefik.http.routers.wildcarddomain.service: "noop@internal"
+      traefik.http.routers.wildcarddomain.tls.certResolver: "letsencrypt"
+      "traefik.http.routers.wildcarddomain.tls.domains[0].main": "*.${DOMAIN:?error}"
+      "traefik.http.routers.wildcarddomain.tls.domains[0].sans": "${DOMAIN:?error}"
+
+  service:
+    image: traefik/whoami
+    labels:
+      traefik.http.routers.whoami.rule: Host(`service-host1.${DOMAIN:?error}`)
