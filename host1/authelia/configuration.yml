@@ -1,0 +1,27 @@
+---
+###############################################################
+#                   Authelia configuration                    #
+###############################################################
+
+jwt_secret: PlSAGIW5sI4Sp9RRKmUkvewt9VxQlJx7NmrPh8JJyqcTpqrFqUIRDrXjVTFKGmxm
+
+log:
+  level: debug
+
+authentication_backend:
+  file:
+    path: /config/users_database.yml
+
+session:
+  secret: WSEuaV9G5Bq2NeibXPyPEj2R3oO4rTwqyD6OjKkUwaOs1c9QJHSwQAsMD82rLa5N
+
+storage:
+  encryption_key: 2fCvDY1Snm6N1ZYu21JDwHQN3OigEUk2c6JcYP0mCnKlbZAxxfsVQCOKKM2niEiw
+  local:
+    path: /config/db.sqlite3
+
+access_control:
+  rules:
+    # prettier-ignore
+    - domain_regex: '^service-host1\.'
+      policy: one_factor

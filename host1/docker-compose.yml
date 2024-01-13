@@ -1,6 +1,22 @@
 version: '3'
 services:
 
+  authelia:
+    image: authelia/authelia:4.37.5
+
+    environment:
+      AUTHELIA_SESSION_DOMAIN: "${DOMAIN:?error}"
+
+    volumes:
+      - "./authelia:/config:rw"
+
+    labels:
+      traefik.http.routers.authelia.rule: "Host(`authelia.${DOMAIN:?error}`)"
+
+      traefik.http.middlewares.authelia.forwardauth.address: "http://authelia:9091/api/verify?rd=https%3A%2F%2Fauthelia.${DOMAIN:?error}%2F"
+      traefik.http.middlewares.authelia.forwardauth.trustForwardHeader: "true"
+      traefik.http.middlewares.authelia.forwardauth.authResponseHeaders: "Remote-User,Remote-Groups,Remote-Name,Remote-Email"
+
   traefik:
     image: traefik
 
