@@ -20,6 +20,10 @@ storage:
   local:
     path: /config/db.sqlite3
 
+notifier:
+  filesystem:
+    filename: /config/notification.txt
+
 access_control:
   rules:
     # prettier-ignore
