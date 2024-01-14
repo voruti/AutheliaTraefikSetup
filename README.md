@@ -26,7 +26,10 @@ A request to the service running on the same machine as Authelia (host 1) works 
 The exact same request, but targeting the service on host 2 (the `1` is replaced with a `2` within the URL, nothing else is changed):
 ![botToServiceHost2](botToServiceHost2.jpg)
 A redirect to the Authelia login page. The log of Authelia shows (IPs, etc. redacted):
+
 ```log
 host1-authelia-1  | time="2024-01-14T16:41:02Z" level=debug msg="Check authorization of subject username= groups= ip=192.168.POST.MAN and object https://service-host2.example.com/ (method GET)."
 host1-authelia-1  | time="2024-01-14T16:41:02Z" level=info msg="Access to https://service-host2.example.com/ (method GET) is not authorized to user <anonymous>, responding with status code 401 with location redirect to https://autheliatest.example.com/?rd=https%3A%2F%2Fservice-host2.example.com%2F&rm=GET" method=GET path=/api/verify remote_ip=192.168.POST.MAN
 ```
+
+The `TRAEFIK_ENTRYPOINTS_WEBSECURE_FORWARDEDHEADERS_TRUSTEDIPS` (and `..._PROXYPROTOCOL_...`) are over-configured, but I thinks this doesn't change the result.
