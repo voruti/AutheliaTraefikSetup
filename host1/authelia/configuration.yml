@@ -27,5 +27,5 @@ notifier:
 access_control:
   rules:
     # prettier-ignore
-    - domain_regex: '^service-host1\.'
+    - domain_regex: '^service-host[12]\.'
       policy: one_factor
