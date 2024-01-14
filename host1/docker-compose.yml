@@ -13,9 +13,9 @@ services:
       - "./authelia:/config:rw"
 
     labels:
-      traefik.http.routers.authelia.rule: "Host(`authelia.${DOMAIN:?error}`)"
+      traefik.http.routers.authelia.rule: "Host(`autheliatest.${DOMAIN:?error}`)"
 
-      traefik.http.middlewares.authelia.forwardauth.address: "http://authelia:9091/api/verify?rd=https%3A%2F%2Fauthelia.${DOMAIN:?error}%2F"
+      traefik.http.middlewares.authelia.forwardauth.address: "http://authelia:9091/api/verify?rd=https%3A%2F%2Fautheliatest.${DOMAIN:?error}%2F"
       traefik.http.middlewares.authelia.forwardauth.trustForwardHeader: "true"
       traefik.http.middlewares.authelia.forwardauth.authResponseHeaders: "Remote-User,Remote-Groups,Remote-Name,Remote-Email"
 

@@ -42,7 +42,7 @@ services:
       "traefik.http.routers.wildcarddomain.tls.domains[0].sans": "${DOMAIN:?error}"
 
       # middleware for Authelia on host1:
-      traefik.http.middlewares.authelia.forwardauth.address: "https://authelia.${DOMAIN:?error}/api/verify?rd=https%3A%2F%2Fauthelia.${DOMAIN:?error}%2F"
+      traefik.http.middlewares.authelia.forwardauth.address: "https://autheliatest.${DOMAIN:?error}/api/verify?rd=https%3A%2F%2Fautheliatest.${DOMAIN:?error}%2F"
       traefik.http.middlewares.authelia.forwardauth.trustForwardHeader: "true"
       traefik.http.middlewares.authelia.forwardauth.authResponseHeaders: "Remote-User,Remote-Groups,Remote-Name,Remote-Email"
 
