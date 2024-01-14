@@ -32,4 +32,4 @@ host1-authelia-1  | time="2024-01-14T16:41:02Z" level=debug msg="Check authoriza
 host1-authelia-1  | time="2024-01-14T16:41:02Z" level=info msg="Access to https://service-host2.example.com/ (method GET) is not authorized to user <anonymous>, responding with status code 401 with location redirect to https://autheliatest.example.com/?rd=https%3A%2F%2Fservice-host2.example.com%2F&rm=GET" method=GET path=/api/verify remote_ip=192.168.POST.MAN
 ```
 
-The `TRAEFIK_ENTRYPOINTS_WEBSECURE_FORWARDEDHEADERS_TRUSTEDIPS` (and `..._PROXYPROTOCOL_...`) are over-configured, but I thinks this doesn't change the result.
+The `TRAEFIK_ENTRYPOINTS_WEBSECURE_FORWARDEDHEADERS_TRUSTEDIPS` (and `..._PROXYPROTOCOL_...`) are over-configured, but I think this doesn't change the result.
