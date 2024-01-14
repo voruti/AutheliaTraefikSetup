@@ -6,6 +6,7 @@ services:
 
     environment:
       TRAEFIK_API: "true"
+      TRAEFIK_LOG_LEVEL: "DEBUG"
 
       TRAEFIK_PROVIDERS_DOCKER: "true"
       TRAEFIK_PROVIDERS_DOCKER_NETWORK: "host2_default"
