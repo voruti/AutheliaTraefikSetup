@@ -1,6 +1,6 @@
 # AutheliaTraefikSetup
 
-Clone onto two machines, insert your configuration in `.env` and start one stack per machine.
+Clone onto two machines, insert your configuration in `.env` (on both machines) and start one stack per machine.
 
 The domain names should point to the correct hosts:
 
