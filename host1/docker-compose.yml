@@ -7,7 +7,6 @@ services:
     environment:
       PUID: 1000
       PGID: 1000
-      AUTHELIA_SESSION_DOMAIN: "${DOMAIN:?error}"
 
     volumes:
       - "./authelia:/config:rw"
@@ -15,7 +14,7 @@ services:
     labels:
       traefik.http.routers.authelia.rule: "Host(`autheliatest.${DOMAIN:?error}`)"
 
-      traefik.http.middlewares.authelia.forwardauth.address: "http://authelia:9091/api/verify?rd=https%3A%2F%2Fautheliatest.${DOMAIN:?error}%2F"
+      traefik.http.middlewares.authelia.forwardauth.address: "http://authelia:9091/api/authz/forward-auth"
       traefik.http.middlewares.authelia.forwardauth.trustForwardHeader: "true"
       traefik.http.middlewares.authelia.forwardauth.authResponseHeaders: "Remote-User,Remote-Groups,Remote-Name,Remote-Email"
 

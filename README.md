@@ -1,6 +1,7 @@
 # AutheliaTraefikSetup
 
 Clone onto two machines, insert your configuration in `.env` (on both machines) and start one stack per machine.
+Host 1 (Authelia) needs additional configuration in `host1/authelia/configuration.yml`: Replace `example.com` with your domain.
 
 The domain names should point to the correct hosts:
 
