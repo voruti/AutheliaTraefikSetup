@@ -3,7 +3,9 @@
 #                   Authelia configuration                    #
 ###############################################################
 
-jwt_secret: PlSAGIW5sI4Sp9RRKmUkvewt9VxQlJx7NmrPh8JJyqcTpqrFqUIRDrXjVTFKGmxm
+identity_validation:
+  reset_password:
+    jwt_secret: PlSAGIW5sI4Sp9RRKmUkvewt9VxQlJx7NmrPh8JJyqcTpqrFqUIRDrXjVTFKGmxm
 
 log:
   level: debug
