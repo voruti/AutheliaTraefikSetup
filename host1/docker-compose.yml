@@ -4,6 +4,9 @@ services:
   authelia:
     image: authelia/authelia:4.37.5
 
+    healthcheck:
+      disable: true
+
     environment:
       PUID: 1000
       PGID: 1000
