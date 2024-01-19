@@ -23,6 +23,15 @@ session:
     - domain: example.com
       authelia_url: https://autheliatest.example.com
 
+server:
+  endpoints:
+    authz:
+      forward-auth:
+        implementation: "ForwardAuth"
+        authn_strategies:
+          - name: "HeaderAuthorization"
+          - name: "CookieSession"
+
 storage:
   encryption_key: 2fCvDY1Snm6N1ZYu21JDwHQN3OigEUk2c6JcYP0mCnKlbZAxxfsVQCOKKM2niEiw
   local:
