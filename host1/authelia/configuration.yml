@@ -9,6 +9,8 @@ identity_validation:
 
 log:
   level: debug
+  format: json
+  file_path: /authelialog/authelia.log
 
 authentication_backend:
   file:
