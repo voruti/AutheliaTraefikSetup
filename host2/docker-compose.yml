@@ -47,6 +47,7 @@ services:
 
       # middleware for Authelia on host1:
       traefik.http.middlewares.authelia.forwardauth.address: "https://autheliatest.${DOMAIN:?error}/api/authz/forward-auth"
+      traefik.http.middlewares.authelia.forwardauth.tls.insecureSkipVerify: "true"
       traefik.http.middlewares.authelia.forwardauth.trustForwardHeader: "true"
       traefik.http.middlewares.authelia.forwardauth.authResponseHeaders: "Authorization,Proxy-Authorization,Remote-User,Remote-Groups,Remote-Name,Remote-Email"
 
