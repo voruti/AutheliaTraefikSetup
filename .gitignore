@@ -113,3 +113,4 @@ $RECYCLE.BIN/
 
 /.env
 acme.json
+*.log
