@@ -2,21 +2,17 @@ version: '3'
 services:
 
   authelia:
-    image: authelia/authelia:v4.38.0-beta3
+    image: mendhak/http-https-echo
 
     healthcheck:
       disable: true
 
     environment:
-      PUID: 1000
-      PGID: 1000
-
-    volumes:
-      - "./authelia:/config:rw"
-      - "./authelialog:/authelialog:rw"
+      HTTP_PORT: 9091
 
     labels:
       traefik.http.routers.authelia.rule: "Host(`autheliatest.${DOMAIN:?error}`)"
+      traefik.http.services.authelia.loadbalancer.server.port: "9091"
 
       traefik.http.middlewares.authelia.forwardauth.address: "http://authelia:9091/api/authz/forward-auth"
       traefik.http.middlewares.authelia.forwardauth.trustForwardHeader: "true"
