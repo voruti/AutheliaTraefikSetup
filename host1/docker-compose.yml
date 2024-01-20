@@ -29,6 +29,8 @@ services:
       TRAEFIK_API: "true"
       TRAEFIK_LOG_LEVEL: "DEBUG"
       TRAEFIK_ACCESSLOG: "true"
+      TRAEFIK_ACCESSLOG_FORMAT: "json"
+      TRAEFIK_ACCESSLOG_FILEPATH: "/traefiklog/"
       TRAEFIK_ACCESSLOG_FIELDS_HEADERS_DEFAULTMODE: "keep"
 
       TRAEFIK_PROVIDERS_DOCKER: "true"
@@ -53,6 +55,7 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./acme.json:/acme.json"
+      - "./traefiklog:/traefiklog"
 
     labels:
       # Traefik dashboard:
