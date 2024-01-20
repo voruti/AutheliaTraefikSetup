@@ -14,6 +14,7 @@ services:
 
     volumes:
       - "./authelia:/config:rw"
+      - "./authelialog:/authelialog:rw"
 
     labels:
       traefik.http.routers.authelia.rule: "Host(`autheliatest.${DOMAIN:?error}`)"
