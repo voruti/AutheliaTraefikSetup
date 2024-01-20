@@ -54,8 +54,8 @@ services:
 
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "./acme.json:/acme.json"
-      - "./traefiklog:/traefiklog"
+      - "./acme.json:/acme.json:rw"
+      - "./traefiklog:/traefiklog:rw"
 
     labels:
       # Traefik dashboard:
