@@ -9,7 +9,7 @@ services:
       TRAEFIK_LOG_LEVEL: "DEBUG"
       TRAEFIK_ACCESSLOG: "true"
       TRAEFIK_ACCESSLOG_FORMAT: "json"
-      TRAEFIK_ACCESSLOG_FILEPATH: "/traefiklog/"
+      TRAEFIK_ACCESSLOG_FILEPATH: "/traefiklog/access.log"
       TRAEFIK_ACCESSLOG_FIELDS_HEADERS_DEFAULTMODE: "keep"
 
       TRAEFIK_PROVIDERS_DOCKER: "true"
