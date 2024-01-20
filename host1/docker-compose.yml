@@ -23,39 +23,13 @@ services:
       traefik.http.middlewares.authelia.forwardauth.authResponseHeaders: "Authorization,Proxy-Authorization,Remote-User,Remote-Groups,Remote-Name,Remote-Email"
 
   traefik:
-    image: traefik:2.10.7
+    image: mendhak/http-https-echo
 
     environment:
-      TRAEFIK_API: "true"
-      TRAEFIK_LOG_LEVEL: "DEBUG"
-      TRAEFIK_ACCESSLOG: "true"
-      TRAEFIK_ACCESSLOG_FORMAT: "json"
-      TRAEFIK_ACCESSLOG_FILEPATH: "/traefiklog/access.log"
-      TRAEFIK_ACCESSLOG_FIELDS_HEADERS_DEFAULTMODE: "keep"
-
-      TRAEFIK_PROVIDERS_DOCKER: "true"
-      TRAEFIK_PROVIDERS_DOCKER_NETWORK: "host1_default"
-
-      TRAEFIK_ENTRYPOINTS_WEBSECURE_ADDRESS: ":443"
-      TRAEFIK_ENTRYPOINTS_WEBSECURE_HTTP_TLS: "true"
-      TRAEFIK_ENTRYPOINTS_WEBSECURE_FORWARDEDHEADERS_TRUSTEDIPS: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
-      TRAEFIK_ENTRYPOINTS_WEBSECURE_PROXYPROTOCOL_TRUSTEDIPS: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
-
-      # ACME DNS challenge:
-      TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_TLSCHALLENGE: "false"
-      TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_DNSCHALLENGE: "true"
-      # TRAEFIK_CERTIFICATESRESOLVERS_LETSENCRYPT_ACME_CASERVER: "https://acme-staging-v02.api.letsencrypt.org/directory"
-
-    env_file:
-      - .env
+      HTTPS_PORT: 443
 
     ports:
       - "443:443"
-
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "./acme.json:/acme.json:rw"
-      - "./traefiklog:/traefiklog:rw"
 
     labels:
       # Traefik dashboard:
