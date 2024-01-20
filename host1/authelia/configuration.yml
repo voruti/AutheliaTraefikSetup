@@ -6,7 +6,7 @@
 jwt_secret: PlSAGIW5sI4Sp9RRKmUkvewt9VxQlJx7NmrPh8JJyqcTpqrFqUIRDrXjVTFKGmxm
 
 log:
-  level: debug
+  level: trace
   format: json
   file_path: /authelialog/authelia.log
 
