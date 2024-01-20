@@ -23,7 +23,7 @@ services:
       traefik.http.middlewares.authelia.forwardauth.authResponseHeaders: "Authorization,Proxy-Authorization,Remote-User,Remote-Groups,Remote-Name,Remote-Email"
 
   traefik:
-    image: traefik
+    image: traefik:2.10.7
 
     environment:
       TRAEFIK_API: "true"
